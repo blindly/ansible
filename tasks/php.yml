@@ -1,0 +1,24 @@
+---
+- hosts: localhost
+  tasks:
+    - name: Install PHP and Modules in Ubuntu
+      package:
+        name: {{ items }}
+        state: latest
+        when: ansible_distribution == 'Ubuntu'    
+        with_items: 
+          - php-xml
+          - php-mcrypt
+          - php-mysql
+          - php
+          - libapache2-mod-php
+    - name: Install PHP and Modules in RedHat
+      package:
+        name: {{ items }}
+        state: latest
+        when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux' 
+        with_items: 
+          - php-xml
+          - php-mcrypt
+          - php-mysql
+          - php

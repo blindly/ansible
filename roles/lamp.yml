@@ -1,0 +1,4 @@
+---
+- include: ../tasks/apache.yml
+- include: ../tasks/php.yml
+- include: ../tasks/mysql.yml
