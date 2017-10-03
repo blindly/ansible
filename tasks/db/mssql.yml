@@ -1,0 +1,28 @@
+---
+- hosts: localhost
+  tasks:
+    - name: Adding MSSQL Repository Key for Ubuntu
+      apt_key:
+        url: https://packages.microsoft.com/keys/microsoft.asc
+        state: present
+      when: ansible_distribution == 'Ubuntu'
+    - name: Add MSSQL Repository for Ubuntu
+      apt_repository: 
+        repo: deb https://packages.microsoft.com/ubuntu/16.04/mssql-server xenial main
+        state: present
+      when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+    - name: Add MSSQL Repository for RedHat
+      yum_repository:
+        name: mssql-repo
+        description: Microsoft MSSQL Repo
+        baseurl: https://packages.microsoft.com/rhel/7/mssql-server/
+        gpgkey: https://packages.microsoft.com/keys/microsoft.asc
+        gpgcheck: yes
+      when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+    - name: Installs MSSQL
+      package: name=mssql-server state=installed
+    - name: Start MSSQL Service
+      service:
+        name: mssql-server
+        state: started
+        enabled: yes
