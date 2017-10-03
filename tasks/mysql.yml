@@ -1,6 +1,9 @@
 ---
 - hosts: localhost
   tasks:
+    - name: Install MySQL Driver
+      package: python-mysqldb
+      state: latest
     - name: MySQL Install
       package:
         name: mysql-server
