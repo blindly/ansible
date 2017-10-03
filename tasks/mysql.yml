@@ -7,12 +7,12 @@
         state: latest
     - name: Create a new database
       mysql_db:
-        name: {{ item }}
+        name: "{{ item }}"
         state: present
         with_items:
           - sample-database
     - mysql_user:
-        name: {{ item }}
+        name: "{{ item }}"
         password: 3R3xm7kM
         priv: '{{ item }}.*:ALL'
         state: present

@@ -2,10 +2,10 @@
 - hosts: localhost
   tasks:
     - name: Install PHP and Modules in Ubuntu
+      when: ansible_distribution == 'Ubuntu'    
       package:
-        name: {{ items }}
+        name: "{{ items }}"
         state: latest
-        when: ansible_distribution == 'Ubuntu'    
         with_items: 
           - php-xml
           - php-mcrypt
@@ -13,10 +13,10 @@
           - php
           - libapache2-mod-php
     - name: Install PHP and Modules in RedHat
+      when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux' 
       package:
-        name: {{ items }}
+        name: "{{ items }}"
         state: latest
-        when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux' 
         with_items: 
           - php-xml
           - php-mcrypt
