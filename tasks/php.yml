@@ -6,19 +6,19 @@
       package:
         name: "{{ item }}"
         state: latest
-        with_items: 
-          - php-xml
-          - php-mcrypt
-          - php-mysql
-          - php
-          - libapache2-mod-php
+      with_items: 
+        - php-xml
+        - php-mcrypt
+        - php-mysql
+        - php
+        - libapache2-mod-php
     - name: Install PHP and Modules in RedHat
       when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux' 
       package:
         name: "{{ item }}"
         state: latest
-        with_items: 
-          - php-xml
-          - php-mcrypt
-          - php-mysql
-          - php
+      with_items: 
+        - php-xml
+        - php-mcrypt
+        - php-mysql
+        - php
