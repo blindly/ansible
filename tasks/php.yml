@@ -4,7 +4,7 @@
     - name: Install PHP and Modules in Ubuntu
       when: ansible_distribution == 'Ubuntu'    
       package:
-        name: "{{ items }}"
+        name: "{{ item }}"
         state: latest
         with_items: 
           - php-xml
@@ -15,7 +15,7 @@
     - name: Install PHP and Modules in RedHat
       when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux' 
       package:
-        name: "{{ items }}"
+        name: "{{ item }}"
         state: latest
         with_items: 
           - php-xml
